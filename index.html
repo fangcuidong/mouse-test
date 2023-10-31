@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var total = 0;
+    var num = 0;
+    var last = 0;
+    function fn() {
+      // console.log(num);
+      var now = new Date().getTime();
+      if (last) {
+        console.log('距离上次点击间隔:', now - last);
+      }
+      console.log('点击数次数:', total);
+      // 屏蔽菜单
+      document.oncontextmenu = () => false;
+      num++;
+      total++;
+      text.innerHTML = num;
+      if (num > 1) {
+        alert('距离上次点击间隔:' + (now - last) + 'ms');
+      }
+      last = now;
+      setTimeout(() => {
+        num = 0;
+        text.innerHTML = num;
+      }, 100);
+    }
+  </script>
+</head>
+
+<body>
+  <div style="background-color: aqua;width: 500px;height: 500px;user-select: none;" onmousedown="fn()">
+    <h1 id="text">双击测试</h1>
+  </div>
+</body>
+
+</html>
